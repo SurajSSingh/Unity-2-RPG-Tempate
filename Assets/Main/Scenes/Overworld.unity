@@ -1096,7 +1096,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemButton: {fileID: 3911442666109981225, guid: 53b5fbbdada264051ab3b9ed51c303c0,
     type: 3}
-  inventoryContent: {fileID: 0}
+  inventoryContent: {fileID: 1834378368}
   pm: {fileID: 0}
 --- !u!1001 &310842949
 PrefabInstance:

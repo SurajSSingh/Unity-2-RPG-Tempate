@@ -8,8 +8,12 @@ public class InventorySlot : MonoBehaviour
 {
     public int indexItem;
     public int amount;
-    public Item mainItem;
     public TextMeshProUGUI infoText;
+
+    private string itemName;
+    private string itemType;
+    private string itemRarity;
+    private int itemPrice;
 
     public void InitalizeSelf(int currentIndex, PlayerManager player)
     {
@@ -18,7 +22,7 @@ public class InventorySlot : MonoBehaviour
         {
             indexItem = currentIndex;
             amount = 0;
-            mainItem = (Item) ScriptableObject.CreateInstance(player.lt.lootItems[indexItem].name);
+            FillValues(player);
         }
         else
         {
@@ -34,17 +38,26 @@ public class InventorySlot : MonoBehaviour
             amount = player.invetory[indexItem].itemAmount;
             GetComponentInChildren<Image>().sprite = player.lt.lootItems[indexItem].sprite;
             GetComponentInChildren<Image>().color = player.lt.lootItems[indexItem].color;
+            FillValues(player);
         }
         GetComponentInChildren<TextMeshProUGUI>().text = amount.ToString();
     }
 
+    void FillValues(PlayerManager player)
+    {
+        itemName = player.lt.lootItems[indexItem].itemName;
+        itemType = player.lt.lootItems[indexItem].itemType.ToString();
+        itemRarity = player.lt.lootItems[indexItem].rarity.ToString();
+        itemPrice = player.lt.lootItems[indexItem].price;
+}
+
     public void UpdateInfo()
     {
-        infoText.text = "Name: " + mainItem.name +
+        infoText.text = "Name: " + itemName +
                         "\nAmount: " + amount.ToString() +
-                        "\nType: " + mainItem.itemType.ToString() +
-                        "\nRarity: " + mainItem.rarity.ToString() + "%" +
-                        "\nPrice Per: " + mainItem.price.ToString() +
-                        "\nTotal Price: " + (mainItem.price*amount).ToString();
+                        "\nType: " + itemType +
+                        $"\nRarity: {itemRarity}%" +
+                        "\nPrice Per: " + itemPrice.ToString() +
+                        "\nTotal Price: " + (itemPrice * amount).ToString();
     }
 }
