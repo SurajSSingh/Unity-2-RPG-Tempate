@@ -51,6 +51,7 @@ public class GameMenuManager : MonoBehaviour
     public void OpenInventory()
     {
         inventoryMenu.SetActive(true);
+        inventoryMenu.GetComponent<InventoryUI>().UpdateAllSquares();
         isPaused = true;
         Time.timeScale = 0.0f;
     }

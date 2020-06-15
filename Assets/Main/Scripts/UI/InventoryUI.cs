@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject itemButton;
+    public GameObject inventoryContent;
+    public PlayerManager pm;
+
     void Start()
     {
-        
+        pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
+        int count = 0;
+        foreach (InventorySlot square in inventoryContent.GetComponentsInChildren<InventorySlot>())
+        {
+            square.InitalizeSelf(count, pm);
+            count++;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateAllSquares()
     {
-        
+        foreach (InventorySlot square in inventoryContent.GetComponentsInChildren<InventorySlot>())
+        {
+            square.UpdateSelf(pm);
+        }
     }
 }

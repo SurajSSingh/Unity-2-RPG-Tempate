@@ -9,6 +9,8 @@ public class DigSiteManager : MonoBehaviour
     public GameObject digPanel;
     public LootTable lt;
 
+    public PlayerManager pm;
+
     [SerializeField]
     private List<int> currentVein;
     private bool isMineable = false;
@@ -17,6 +19,7 @@ public class DigSiteManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
         RandomFill();
     }
 
@@ -25,13 +28,14 @@ public class DigSiteManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && isMineable && inMineZone)
         {
             digPanel.SetActive(true);
-            DigMine();
+            pm.AddToInventory(DigMine());
         }
     }
 
     List<int> DigMine()
     {
-        int digAmount = Random.Range(5, 10);
+        int digAmount = Random.Range(4/PlayerPrefs.GetInt(PrefNames.difficulty),
+                                    16/PlayerPrefs.GetInt(PrefNames.difficulty));
         List<int> lootFound = new List<int>();
         digPanel.GetComponentInChildren<TextMeshProUGUI>().text = "";
         for (int i = 0; i < digAmount; i++)
@@ -73,7 +77,8 @@ public class DigSiteManager : MonoBehaviour
 
     void RandomFill()
     {
-        int veinAmount = Random.Range(50,100);
+        int veinAmount = Random.Range(64 / PlayerPrefs.GetInt(PrefNames.difficulty),
+                                      128 / PlayerPrefs.GetInt(PrefNames.difficulty));
         for (int i = 0; i < veinAmount; i++)
         {
             currentVein.Add(RandomLoot());
@@ -88,7 +93,8 @@ public class DigSiteManager : MonoBehaviour
 
     IEnumerator MineCoolDown()
     {
-        yield return new WaitForSeconds(Random.Range(20, 120));
+        yield return new WaitForSeconds(Random.Range(30*PlayerPrefs.GetInt(PrefNames.difficulty),
+                                                     60 * PlayerPrefs.GetInt(PrefNames.difficulty)));
         RandomFill();
     }
 }

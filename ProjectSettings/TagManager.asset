@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Spot
   - DIM
+  - LootTable
   layers:
   - Default
   - TransparentFX
