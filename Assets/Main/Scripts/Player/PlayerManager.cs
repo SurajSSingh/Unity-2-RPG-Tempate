@@ -17,6 +17,7 @@ public class PlayerManager : MonoBehaviour
     public int experience = 1;
     public TextMeshProUGUI goldText;
     public TextMeshProUGUI expText;
+    public TextMeshProUGUI playerNameText;
     public LootTable lt;
     public List<inventorySlotProxy> invetory = new List<inventorySlotProxy>();
 
@@ -28,6 +29,7 @@ public class PlayerManager : MonoBehaviour
         {
             invetory.Add(new inventorySlotProxy { itemIndex = i, itemAmount = 0 });
         }
+        playerNameText.text = PlayerPrefs.GetString(PrefNames.playerName) + "Info |>";
         UpdateUI();
     }
 
