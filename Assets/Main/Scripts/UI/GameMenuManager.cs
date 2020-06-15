@@ -61,6 +61,8 @@ public class GameMenuManager : MonoBehaviour
 
     public void CloseInventory()
     {
+        isPaused = false;
+        Time.timeScale = 1.0f;
         inventoryMenu.SetActive(false);
     }
 

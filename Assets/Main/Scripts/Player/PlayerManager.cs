@@ -29,7 +29,6 @@ public class PlayerManager : MonoBehaviour
             invetory.Add(new inventorySlotProxy { itemIndex = i, itemAmount = 0 });
         }
         UpdateUI();
-        Debug.Log(invetory);
     }
 
     void UpdateUI()
@@ -60,10 +59,11 @@ public class PlayerManager : MonoBehaviour
         
         foreach(int index in values)
         {
-            Debug.Log(lt.ToSimpleInventory(index));
             invetory[lt.ToSimpleInventory(index)].itemAmount += 1;
         }
-        experience += Random.Range(0, 1)*(values.Count/PlayerPrefs.GetInt(PrefNames.difficulty));
+        float multipler = (float) PlayerPrefs.GetInt(PrefNames.difficulty);
+        experience += Mathf.RoundToInt(Random.Range(1/multipler, multipler) *
+                            (((float)values.Count)/multipler));
         UpdateUI();
     }
 }

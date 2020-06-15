@@ -60,6 +60,8 @@ public class DialogUIManager : MonoBehaviour
 
     public void NextDialogue()
     {
-       // Add next Dialogue mechanism here
+        DeactiveDialogue(); // Remove this and
+       // add next Dialogue mechanism here
+
     }
 }
