@@ -53,7 +53,7 @@ public class DialogUIManager : MonoBehaviour
     }
 
     
-    public void ReciveDialogueBranch()
+    public void RecieveDialogueBranch()
     {
         // Add branch info here
     }
