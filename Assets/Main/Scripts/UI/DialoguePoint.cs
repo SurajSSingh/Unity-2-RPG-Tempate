@@ -12,9 +12,6 @@ public class DialoguePoint : MonoBehaviour
     private bool inDialogueZone;
     private bool dialoguePlaying;
 
-    //Students need to add
-    public DialogueBranch branch;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -35,14 +32,14 @@ public class DialoguePoint : MonoBehaviour
         {
             if (dialoguePlaying)
             {
-                dialogueMenu.NextDialogue(); // SAT
+                dialogueMenu.NextDialogue();
             }
             else if (inDialogueZone)
             {
                 inDialogueZone = false;
                 popup.gameObject.SetActive(false);
                 dialogueMenu.ActiveDialogue();
-                dialogueMenu.NextDialogue(); // SAT
+                dialogueMenu.NextDialogue();
                 dialoguePlaying = true;
             }
         }
@@ -50,7 +47,7 @@ public class DialoguePoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        dialogueMenu.ReciveDialogueBranch(branch); // SAT
+        dialogueMenu.ReciveDialogueBranch(); // Add start branch here
         popup.gameObject.SetActive(true);
         popup.text = "Press [E] to " + info;
         inDialogueZone = true;
