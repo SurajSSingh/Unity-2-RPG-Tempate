@@ -7,12 +7,16 @@ public class GameMenuManager : MonoBehaviour
 {
     public GameObject directions;
     public GameObject pauseMenu;
+    public GameObject inventoryMenu;
+    public GameObject DigUpPanel;
 
     public bool isPaused;
 
     void Start()
     {
         ShowDirections();
+        CloseInventory();
+        CloseDigPanel();
     }
 
     void Update()
@@ -20,6 +24,10 @@ public class GameMenuManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ManagePause();
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            OpenInventory();
         }
     }
 
@@ -30,6 +38,7 @@ public class GameMenuManager : MonoBehaviour
             isPaused = false;
             pauseMenu.SetActive(false);
             Time.timeScale = 1.0f;
+            CloseInventory();
         }
         else
         {
@@ -39,6 +48,23 @@ public class GameMenuManager : MonoBehaviour
         }
     }
 
+    public void OpenInventory()
+    {
+        inventoryMenu.SetActive(true);
+        isPaused = true;
+        Time.timeScale = 0.0f;
+    }
+
+    public void CloseInventory()
+    {
+        inventoryMenu.SetActive(false);
+    }
+
+    public void CloseDigPanel()
+    {
+        DigUpPanel.SetActive(false);
+    }
+    
     public void ShowDirections()
     {
         Time.timeScale = 0.0f;

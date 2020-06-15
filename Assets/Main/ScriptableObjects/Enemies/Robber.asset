@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   minDamage: 10
-  maxDamage: 10
+  maxDamage: 15
   sprite: {fileID: 1688452843344484, guid: 7cdb699f28c96ee4b9e64c83a9a02b2b, type: 3}
   color: {r: 0.94117653, g: 0.94117653, b: 0.94117653, a: 1}
