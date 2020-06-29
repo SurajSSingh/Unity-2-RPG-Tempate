@@ -25,9 +25,15 @@ public class MainMenuManager : MonoBehaviour
     public void ContinueGame()
     {
         Debug.Log("Continuing Game");
-        // Find Save file
-        // if found place info into database else load new game
-        newGamePanel.SetActive(true);
+        if (SaveSystem.SaveFound())
+        {
+            StartGame();
+            GameDatabase.GetComponent<SaveManager>().LoadGame(); 
+        }
+        else
+        {
+            newGamePanel.SetActive(true);
+        }
     }
 
     public void QuitGame()
@@ -48,12 +54,13 @@ public class MainMenuManager : MonoBehaviour
     {
         if(GameDatabase != null || GameObject.Find("GameData"))
         {
+            GameDatabase = GameObject.Find("GameData");
             return;
         }
 
         GameDatabase = new GameObject();
         GameDatabase.name = "GameData";
-        GameDatabase.AddComponent<DatabaseManager>();
+        GameDatabase.AddComponent<SaveManager>();
     }
 
     // PlayerPref helper functions

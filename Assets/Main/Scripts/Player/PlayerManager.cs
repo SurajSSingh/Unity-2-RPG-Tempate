@@ -32,7 +32,7 @@ public class PlayerManager : MonoBehaviour
         Debug.Log(invetory);
     }
 
-    void UpdateUI()
+    public void UpdateUI()
     {
         goldText.text = "Gold: " + gold.ToString();
         expText.text = "Exp: " + experience.ToString();
