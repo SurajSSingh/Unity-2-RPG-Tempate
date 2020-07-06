@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour
     public TextMeshProUGUI expText;
     public TextMeshProUGUI playerNameText;
     public LootTable lt;
-    public List<inventorySlotProxy> invetory = new List<inventorySlotProxy>();
+    public List<inventorySlotProxy> inventory = new List<inventorySlotProxy>();
 
     // Start is called before the first frame update
     void Start()
@@ -27,13 +27,13 @@ public class PlayerManager : MonoBehaviour
         lt = GameObject.FindGameObjectWithTag("LootTable").GetComponent<LootTable>();
         for (int i = 0; i < lt.lootItems.Count; i++)
         {
-            invetory.Add(new inventorySlotProxy { itemIndex = i, itemAmount = 0 });
+            inventory.Add(new inventorySlotProxy { itemIndex = i, itemAmount = 0 });
         }
-        playerNameText.text = PlayerPrefs.GetString(PrefNames.playerName) + "Info |>";
+        playerNameText.text = "Name: " + PlayerPrefs.GetString(PrefNames.playerName);
         UpdateUI();
     }
 
-    void UpdateUI()
+    public void UpdateUI()
     {
         goldText.text = "Gold: " + gold.ToString();
         expText.text = "Exp: " + experience.ToString();
@@ -42,12 +42,12 @@ public class PlayerManager : MonoBehaviour
     public int SellAll(Item.ItemType iType)
     {
         int amountMade = 0;
-        for (int i = 0; i < invetory.Count; i++)
+        for (int i = 0; i < inventory.Count; i++)
         {
-            if(lt.lootItems[invetory[i].itemIndex].itemType == iType)
+            if(lt.lootItems[inventory[i].itemIndex].itemType == iType)
             {
-                amountMade += lt.lootItems[invetory[i].itemIndex].price * invetory[i].itemAmount;
-                invetory[i] = new inventorySlotProxy { itemIndex = i, itemAmount = 0 };
+                amountMade += lt.lootItems[inventory[i].itemIndex].price * inventory[i].itemAmount;
+                inventory[i] = new inventorySlotProxy { itemIndex = i, itemAmount = 0 };
             }
             
         }
@@ -61,7 +61,7 @@ public class PlayerManager : MonoBehaviour
         
         foreach(int index in values)
         {
-            invetory[lt.ToSimpleInventory(index)].itemAmount += 1;
+            inventory[lt.ToSimpleInventory(index)].itemAmount += 1;
         }
         float multipler = (float) PlayerPrefs.GetInt(PrefNames.difficulty);
         experience += Mathf.RoundToInt(Random.Range(1/multipler, multipler) *

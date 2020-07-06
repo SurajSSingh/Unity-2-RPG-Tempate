@@ -18,7 +18,7 @@ public class InventorySlot : MonoBehaviour
     public void InitalizeSelf(int currentIndex, PlayerManager player)
     {
         indexItem = currentIndex;
-        if (currentIndex < player.invetory.Count)
+        if (currentIndex < player.inventory.Count)
         {
             indexItem = currentIndex;
             amount = 0;
@@ -35,7 +35,7 @@ public class InventorySlot : MonoBehaviour
     {
         if (indexItem > -1)
         {
-            amount = player.invetory[indexItem].itemAmount;
+            amount = player.inventory[indexItem].itemAmount;
             GetComponentInChildren<Image>().sprite = player.lt.lootItems[indexItem].sprite;
             GetComponentInChildren<Image>().color = player.lt.lootItems[indexItem].color;
             FillValues(player);

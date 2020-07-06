@@ -17,6 +17,20 @@ public class GameMenuManager : MonoBehaviour
         ShowDirections();
         CloseInventory();
         CloseDigPanel();
+        SetDefaults();
+    }
+
+    void SetDefaults()
+    {
+        // If player prefs not defined, just put to default values
+        if (!PlayerPrefs.HasKey(PrefNames.difficulty))
+        {
+            PlayerPrefs.SetInt(PrefNames.difficulty, 0);
+        }
+        if (!PlayerPrefs.HasKey(PrefNames.playerName))
+        {
+            PlayerPrefs.SetString(PrefNames.playerName, "Character");
+        }
     }
 
     void Update()
@@ -92,6 +106,6 @@ public class GameMenuManager : MonoBehaviour
 
     public void SaveGame()
     {
-        // To Implement
+        GameObject.Find("GameData").GetComponent<SaveManager>().SaveGame();
     }
 }
