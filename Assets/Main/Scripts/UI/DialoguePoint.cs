@@ -58,5 +58,6 @@ public class DialoguePoint : MonoBehaviour
         inDialogueZone = false;
         popup.gameObject.SetActive(false);
         dialoguePlaying = false;
+        dialogueMenu.DeactiveDialogue();
     }
 }

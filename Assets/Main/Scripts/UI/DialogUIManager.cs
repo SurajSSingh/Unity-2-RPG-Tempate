@@ -35,7 +35,7 @@ public class DialogUIManager : MonoBehaviour
         }
     }
 
-    void DeactiveDialogue()
+    public void DeactiveDialogue()
     {
         background.SetActive(false);
         mainText.SetActive(false);
