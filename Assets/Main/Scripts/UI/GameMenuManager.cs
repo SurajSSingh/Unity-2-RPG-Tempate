@@ -25,7 +25,7 @@ public class GameMenuManager : MonoBehaviour
         // If player prefs not defined, just put to default values
         if (!PlayerPrefs.HasKey(PrefNames.difficulty))
         {
-            PlayerPrefs.SetInt(PrefNames.difficulty, 0);
+            PlayerPrefs.SetInt(PrefNames.difficulty, 1);
         }
         if (!PlayerPrefs.HasKey(PrefNames.playerName))
         {
