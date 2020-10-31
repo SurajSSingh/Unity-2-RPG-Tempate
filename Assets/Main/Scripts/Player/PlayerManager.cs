@@ -22,7 +22,7 @@ public class PlayerManager : MonoBehaviour
     public List<inventorySlotProxy> inventory = new List<inventorySlotProxy>();
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         lt = GameObject.FindGameObjectWithTag("LootTable").GetComponent<LootTable>();
         for (int i = 0; i < lt.lootItems.Count; i++)
