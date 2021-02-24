@@ -34,7 +34,7 @@ public class DigSiteManager : MonoBehaviour
 
     List<int> DigMine()
     {
-        if (PlayerPrefs.GetInt(PrefNames.difficulty) == 0)
+        if (!PlayerPrefs.HasKey(PrefNames.difficulty) || PlayerPrefs.GetInt(PrefNames.difficulty) == 0)
         {
             PlayerPrefs.SetInt(PrefNames.difficulty, 1);
         }
