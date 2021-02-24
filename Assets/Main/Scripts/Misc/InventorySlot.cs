@@ -33,7 +33,7 @@ public class InventorySlot : MonoBehaviour
 
     public void UpdateSelf(PlayerManager player)
     {
-        if (indexItem > -1)
+        if (indexItem > -1 && player.inventory[indexItem] != null)
         {
             amount = player.inventory[indexItem].itemAmount;
             GetComponentInChildren<Image>().sprite = player.lt.lootItems[indexItem].sprite;

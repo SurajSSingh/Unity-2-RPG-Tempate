@@ -34,6 +34,10 @@ public class DigSiteManager : MonoBehaviour
 
     List<int> DigMine()
     {
+        if (PlayerPrefs.GetInt(PrefNames.difficulty) == 0)
+        {
+            PlayerPrefs.SetInt(PrefNames.difficulty, 1);
+        }
         int digAmount = Random.Range(4/PlayerPrefs.GetInt(PrefNames.difficulty),
                                     16/PlayerPrefs.GetInt(PrefNames.difficulty));
         List<int> lootFound = new List<int>();
